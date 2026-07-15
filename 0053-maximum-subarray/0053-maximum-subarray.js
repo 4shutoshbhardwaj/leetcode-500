@@ -7,7 +7,10 @@ var maxSubArray = function(nums) {
     // let sum=0;
     // for(let i=0;i<nums.length;i++){
     //     sum=0;
-    //     if(nums[i]<=0)continue;
+    //     if(nums[i]<=0){
+    //         max=max<nums[i]?nums[i]:max;
+    //         continue;
+    //     }
     //     for(let j=i;j<nums.length;j++){
     //         sum+=nums[j];
     //         if(sum>max){
