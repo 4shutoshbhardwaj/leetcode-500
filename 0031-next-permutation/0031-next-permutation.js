@@ -9,12 +9,10 @@ var nextPermutation = function(nums) {
     let lastEle;
     for(let i=len-1;i>=0;i--){
         if(nums[i+1]&&nums[i]<nums[i+1]){
-            console.log(nums[i],nums[i+1]);
             tempI=i;
             break;
         }
     }
-    console.log(tempI," - tempI");
     if(tempI!=-1)tempA=nums.splice(tempI);
     if(tempI===-1){
         let i=0;
@@ -42,6 +40,5 @@ var nextPermutation = function(nums) {
     nums.push(tempA.shift());
     tempA.sort((a,b)=>a-b);
     nums.push(...tempA);
-    // console.log(tempA,tempI,nums,smallest,smallestI);
     return nums;
 };
