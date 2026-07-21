@@ -3,18 +3,16 @@
  * @return {number[][]}
  */
 var generate = function(numRows) {
-    let result=[[1],[1,1]];
     if(numRows==1)return [[1]];
-    if(numRows==2)return result;
-    numRows=numRows-2;
-    while(numRows>0){
-        let arr=[1];
-        for(let i=0;i<result[result.length-2].length;i++){
-            arr.push(result[result.length-1][i]+result[result.length-1][i+1]);
+    var arr=[[1],[1,1]];
+    for(var i=3;i<=numRows;i++){
+        var lastArr=arr[arr.length-1];
+        var tempArr=[1];
+        for(var j=0;j<lastArr.length-1;j++){
+            tempArr.push(lastArr[j]+lastArr[j+1]);
         }
-        arr.push(1);
-        result.push([...arr]);
-        numRows--;
+        tempArr.push(1);
+        arr.push(tempArr);
     }
-    return result;
+    return arr;
 };
