@@ -11,7 +11,6 @@ var subarraySum = function(nums, k) {
             sum+=nums[j];
             if(sum==k){
                 count++;
-                // break;
             }
         }
     }
