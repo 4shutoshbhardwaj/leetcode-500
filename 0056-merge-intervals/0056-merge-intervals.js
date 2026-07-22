@@ -14,6 +14,5 @@ var merge = function(intervals) {
             temp.push([...intervals[i]]);
         }
     }
-    // console.log(temp);
     return temp;
 };
