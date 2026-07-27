@@ -11,7 +11,7 @@ var minDays = function(bloomDay, m, k) {
     while(i<=j){
         let mid=i+Math.floor((j-i)/2);
         let bloomed=0;
-        console.log(mid);
+        // console.log(mid);
         let bouquets=0;
         for(let q=0;q<bloomDay.length;q++){
             if(mid>=bloomDay[q]){
