@@ -5,17 +5,17 @@
 var findMin = function(nums) {
     let i=0;
     let j=nums.length-1;
+    let min=nums[i];
     while(i<=j){
-        let mid=i+Math.floor((j-i)/2);
-        if(nums[i]>nums[j]){
-            if(nums[i]<=nums[mid]){
-                i=mid+1;
-            }else{
-                j=mid;
-            }
+        let mid=Math.floor((j-i)/2)+i;
+        if(nums[i]<=nums[mid]){
+            i=mid+1;
         }else{
-            return nums[i];
+            j=mid;
+        }
+        if(min>nums[i]){
+            min=nums[i];
         }
     }
-    // return false;
+    return +min;
 };
