@@ -12,7 +12,7 @@ var minEatingSpeed = function(piles, h) {
         for(let q=0;q<piles.length;q++){
             hours+=Math.ceil(piles[q]/mid);
         }
-        if(hours<=h){
+        if(h>=hours){
             j=mid;
         }else{
             i=mid+1;
