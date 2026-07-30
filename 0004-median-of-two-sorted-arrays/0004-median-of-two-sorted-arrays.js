@@ -4,34 +4,26 @@
  * @return {number}
  */
 var findMedianSortedArrays = function(nums1, nums2) {
-    var arr=[];
-    var i=0;
-    var j=0;
-    while(i<nums1.length&&j<nums2.length){
-        if(nums1[i]<nums2[j]){
-            arr.push(nums1[i]);
-            i++;
-        }else if(nums1[i]>nums2[j]){
-            arr.push(nums2[j]);
-            j++;
-        }else{
-            arr.push(nums1[i]);
-            i++;
-            arr.push(nums2[j]);
-            j++;
+    if(nums1.length>nums2.length)return findMedianSortedArrays(nums2,nums1);
+    let i1=0;
+    let j1=nums1.length;
+    while(i1<=j1){
+        let mid1=Math.floor((i1+j1)/2);
+        let mid2=Math.floor((nums1.length+nums2.length+1)/2)-mid1;
+        let l1=mid1==0?-Infinity:nums1[mid1-1];
+        let r1=mid1==nums1.length?Infinity:nums1[mid1];
+        let l2=mid2==0?-Infinity:nums2[mid2-1];
+        let r2=mid2==nums2.length?Infinity:nums2[mid2];
+        if(l1<=r2&&l2<=r1){
+            if((nums1.length+nums2.length)%2==0){
+                return(Math.max(l1,l2)+Math.min(r1,r2))/2;
+            }
+            return Math.max(l1,l2);
         }
-    }
-    while(i<nums1.length){
-        arr.push(nums1[i]);
-        i++;
-    }
-    while(j<nums2.length){
-        arr.push(nums2[j]);
-        j++;
-    }
-    if(arr.length%2==0){
-        return (arr[arr.length/2]+arr[(arr.length/2)-1])/2;
-    }else{
-        return arr[Math.floor(arr.length/2)];
+        if(l1>r2){
+            j1=mid1-1;
+        }else{
+            i1=mid1+1;
+        }
     }
 };
