@@ -4,26 +4,27 @@
  * @return {number}
  */
 var splitArray = function(nums, k) {
-    var l=Math.max(...nums);
-    var r=nums.reduce((acc,a)=>acc+a,0);
-    while(l<r){
-        var m=Math.floor((r-l)/2)+l;
-        var count=1;
-        var sum=0;
-        for(var i=0;i<nums.length;i++){
-            if((sum+nums[i])>m){
+    let i=Math.max(...nums);
+    let j=nums.reduce((acc,i)=>acc+i,0);
+    while(i<=j){
+        let mid=Math.floor((j-i)/2)+i;
+        let sum=0;
+        let count=1;
+        for(let num in nums){
+            if(sum+nums[num]>mid){
+                sum=nums[num];
                 count++;
-                sum=nums[i];
             }else{
-                sum+=nums[i];
+                sum+=nums[num];
             }
         }
-        if(count>k){
-            l=m+1;
+        // console.log(mid,count);
+        if(count<=k){
+            j=mid-1;
         }else{
-            r=m;
+            i=mid+1;
         }
     }
-    // console.log(l,r);
-    return l;
+    // console.log(i,j);
+    return i
 };
