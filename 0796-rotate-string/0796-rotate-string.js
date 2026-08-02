@@ -14,13 +14,13 @@ var rotateString = function(s, goal) {
             // break;
         }
     }
-    console.log(j);
+    // console.log(j);
     if(j==-1){
         return false;
     }
     for(let q in arr){
         j=s.length-arr[q];
-        console.log(j);
+        // console.log(j);
         let z=0;
         let flag=true;
         while(j<s.length){
