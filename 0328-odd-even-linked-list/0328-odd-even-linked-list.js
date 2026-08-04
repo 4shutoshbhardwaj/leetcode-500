@@ -22,9 +22,7 @@ var oddEvenList = function(head) {
         f=f.next;
         s.next=f.next;
         s=s.next;
-        // console.log(s,f);
     }
     f.next=temps;
-    // console.log(tempf,temps,f,s);
     return tempf;
 };
