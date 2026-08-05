@@ -17,8 +17,6 @@ var deleteMiddle = function(head) {
         s=s.next;
         f=f.next.next;
     }
-    console.log(s,f,head);
     s.next=s.next.next;
-    console.log(s,f,head);
     return head;
 };
