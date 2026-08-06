@@ -6,7 +6,6 @@ var countGoodNumbers = function(n) {
     let odd=Math.floor(n/2);
     let eve=n-odd;
     const MOD=1000000007n;
-
     function func(num,pow){
         pow=BigInt(pow);
         num=BigInt(num);
@@ -21,6 +20,5 @@ var countGoodNumbers = function(n) {
         }
         return res;
     }
-
     return Number((func(4,odd)*func(5,eve))%MOD);
 };
