@@ -13,7 +13,6 @@ var combinationSum2 = function(candidates, target) {
             subArr.sort((a,b)=>a-b);
             let s=subArr.join("");
             if(obj[s]==undefined){
-                console.log(subArr,sum);
                 arr.push([...subArr]);
                 obj[s]=1;
             }
