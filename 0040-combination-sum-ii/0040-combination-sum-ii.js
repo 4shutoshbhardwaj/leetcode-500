@@ -10,12 +10,12 @@ var combinationSum2 = function(candidates, target) {
     candidates.sort((a,b)=>a-b);
     function func(i,sum,subArr){
         if(sum==target){
-            subArr.sort((a,b)=>a-b);
-            let s=subArr.join("");
-            if(obj[s]==undefined){
+            // subArr.sort((a,b)=>a-b);
+            // let s=subArr.join("");
+            // if(obj[s]==undefined){
                 arr.push([...subArr]);
-                obj[s]=1;
-            }
+            //     obj[s]=1;
+            // }
             return;
         }
         if(sum>target)return;
