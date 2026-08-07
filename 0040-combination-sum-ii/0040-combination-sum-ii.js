@@ -21,7 +21,7 @@ var combinationSum2 = function(candidates, target) {
         if(sum>target)return;
         if(i>=candidates.length)return;
         for(let j=i;j<candidates.length;j++){
-            if(j>i&&candidates[i]==candidates[j])continue;
+            if(j>i&&candidates[j-1]==candidates[j])continue;
             if(sum+candidates[j]>target)break;
             sum+=candidates[j];
             subArr.push(candidates[j]);
