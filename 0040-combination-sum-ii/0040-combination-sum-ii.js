@@ -6,16 +6,10 @@
 var combinationSum2 = function(candidates, target) {
     let i=0;
     let arr=[];
-    let obj={};
     candidates.sort((a,b)=>a-b);
     function func(i,sum,subArr){
         if(sum==target){
-            // subArr.sort((a,b)=>a-b);
-            // let s=subArr.join("");
-            // if(obj[s]==undefined){
-                arr.push([...subArr]);
-            //     obj[s]=1;
-            // }
+            arr.push([...subArr]);
             return;
         }
         if(sum>target)return;
