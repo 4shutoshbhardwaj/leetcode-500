@@ -15,7 +15,6 @@ var solveNQueens = function(n) {
             arr[i][j]="Q";
             if(check(i,j)){
                 func(i+1);
-                // console.log(arr);
             }
             arr[i][j]=".";
         }
@@ -91,6 +90,5 @@ var solveNQueens = function(n) {
         return true;
     }
     func(0);
-    // console.log(ans);
     return ans;
 };
