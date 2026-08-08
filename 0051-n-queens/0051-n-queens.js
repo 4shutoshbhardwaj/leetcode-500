@@ -15,7 +15,7 @@ var solveNQueens = function(n) {
             arr[i][j]="Q";
             if(check(i,j)){
                 func(i+1);
-                console.log(arr);
+                // console.log(arr);
             }
             arr[i][j]=".";
         }
