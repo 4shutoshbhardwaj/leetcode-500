@@ -3,20 +3,9 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-    let obj={};
+    let ans=0;
     for(let i=0;i<nums.length;i++){
-        let s=nums[i];
-        if(obj[s]==undefined){
-            obj[s]=1;
-        }else{
-            obj[s]++;
-        }
+        ans=ans^nums[i];
     }
-    let res;
-    for(let o in obj){
-        if(obj[o]==1){
-            res=o;
-        }
-    }
-    return +res;
+    return ans;
 };
