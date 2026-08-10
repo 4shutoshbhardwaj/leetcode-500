@@ -18,5 +18,5 @@ var isValid = function(s) {
             return false;
         }
     }
-    return arr.length==0?true:false;
+    return arr.length==0;
 };
