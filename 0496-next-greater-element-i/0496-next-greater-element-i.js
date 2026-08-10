@@ -3,22 +3,22 @@
  * @param {number[]} nums2
  * @return {number[]}
  */
-var nextGreaterElement = function(nums1, nums2) {
+var nextGreaterElement = function(nums1,nums2) {
+    let stack=[];
+    let obj={};
+    for(let i=0;i<nums2.length;i++){
+        while(stack.length>0&&nums2[i]>stack[stack.length-1]){
+            let num=stack.pop();
+            obj[num]=nums2[i];
+        }
+        stack.push(nums2[i]);
+    }
+    while(stack.length>0){
+        obj[stack.pop()]=-1;
+    }
     let ans=[];
     for(let i=0;i<nums1.length;i++){
-        let temp=[...nums2];
-        let val=-1;
-        while(temp.length>0){
-            let num=temp.pop();
-            if(num>nums1[i]){
-                val=num;
-            }
-            if(num==nums1[i]){
-                ans.push(val);
-                break;
-            }
-        }
+        ans.push(obj[nums1[i]]);
     }
-    // console.log(ans);
     return ans;
 };
