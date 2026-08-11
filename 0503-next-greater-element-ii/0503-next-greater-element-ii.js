@@ -25,8 +25,7 @@ var nextGreaterElements = function(nums) {
             ans.push(-1);
         }else{
             if(obj[nums[i]].length>1){
-                ans.push(obj[nums[i]][0]);
-                obj[nums[i]].shift();
+                ans.push(obj[nums[i]].shift());
             }else{
                 ans.push(obj[nums[i]][0]);
             }
