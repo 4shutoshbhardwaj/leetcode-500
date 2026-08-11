@@ -21,6 +21,5 @@ var trap = function(height) {
             ans+=(Math.min(lg[i],rg[i])-height[i]);
         }
     }
-    // console.log(ans);
     return ans;
 };
