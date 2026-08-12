@@ -7,7 +7,7 @@ var sumSubarrayMins = function(arr) {
     let lse=[];
     let rse=[];
     for(let i=0;i<arr.length;i++){
-        while(arr[st[st.length-1]]>arr[i]){
+        while(st.length>0&&arr[st[st.length-1]]>arr[i]){
             st.pop();
         }
         if(st.length==0){
@@ -19,7 +19,7 @@ var sumSubarrayMins = function(arr) {
     }
     st=[];
     for(let i=arr.length-1;i>=0;i--){
-        while(arr[st[st.length-1]]>=arr[i]){
+        while(st.length>0&&arr[st[st.length-1]]>=arr[i]){
             st.pop();
         }
         if(st.length==0){
