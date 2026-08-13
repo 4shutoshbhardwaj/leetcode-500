@@ -15,6 +15,6 @@ var removeKdigits = function(nums, k) {
         st.push(nums[i]);
     }
     st.splice(st.length-k,k);
-    let s=st.join("").replace(/^0+/,"");
+    const s=st.join("").replace(/^0+/,"");
     return s==""?"0":s;
 };
