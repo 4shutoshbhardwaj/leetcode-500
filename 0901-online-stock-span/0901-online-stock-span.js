@@ -1,6 +1,5 @@
 
 var StockSpanner = function() {
-    this.arr=[];
     this.st=[];
 };
 
