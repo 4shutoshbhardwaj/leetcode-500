@@ -6,7 +6,6 @@
 var targetIndices = function(nums, target) {
     nums.sort((a,b)=>a-b);
     let ans=[];
-    let t=false;
     for(let i=0;i<nums.length;i++){
         while(nums[i]==target){
             ans.push(i);
