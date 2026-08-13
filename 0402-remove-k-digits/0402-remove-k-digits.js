@@ -6,7 +6,8 @@
 var removeKdigits = function(nums, k) {
     if(nums.length==k)return "0";
     let st=[];
-    for(let i=0;i<nums.length;i++){
+    let n=nums.length;
+    for(let i=0;i<n;i++){
         while(st[st.length-1]>nums[i]&&k>0){
             st.pop();
             k--;
