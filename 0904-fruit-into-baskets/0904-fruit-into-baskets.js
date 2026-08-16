@@ -21,10 +21,8 @@ var totalFruit = function(fruits) {
         }else if(Object.keys(obj).length==2&&obj[fruits[j]]==undefined&&obj[fruits[i]]==1){
             delete obj[fruits[i]];
             i++;
-            // max=Math.max(max,j-i);
         }
     }
     max=Math.max(max,j-i);
-    // console.log(max);
     return max;
 };
