@@ -32,6 +32,5 @@ var characterReplacement = function(s, k) {
         }
         max=Math.max(max,j-i);
     }
-    // console.log(max);
     return max;
 };
