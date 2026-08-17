@@ -17,6 +17,7 @@ var subarraysWithKDistinct = function(nums, k) {
             }else{
                 obj[nums[j]]++;
             }
+            j++;
             while(count>k){
                 obj[nums[i]]--;
                 if(obj[nums[i]]==0){
@@ -25,8 +26,7 @@ var subarraysWithKDistinct = function(nums, k) {
                 }
                 i++;
             }
-            ans+=j-i+1;
-            j++;
+            ans+=j-i;
         }
         return ans;
     }
