@@ -13,19 +13,15 @@ var longestPalindrome = function(s) {
             obj[s[i]]++;
         }
     }
-    for(let i in obj){
-        if(obj[i]%2==1&&max<obj[i]){
-            max=obj[i];
-            char=i;
-        }
-    }
     let ans=0;
+    let t=false;
     for(let i in obj){
         if(obj[i]%2==0){
             ans+=obj[i];
-        }else if(i!=char){
+        }else{
+            !t?t=!t:t;
             ans+=obj[i]-1;
         }
     }
-    return ans+max;
+    return t?ans+1:ans;
 };
