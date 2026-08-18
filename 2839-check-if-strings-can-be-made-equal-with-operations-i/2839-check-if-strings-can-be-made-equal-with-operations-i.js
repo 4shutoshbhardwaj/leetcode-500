@@ -5,7 +5,6 @@
  */
 var canBeEqual = function(s1, s2) {
     let arr2=s2.split("");
-    let arr1=s1.split("");
     let i=0;
     let j=i+2;
     while(j<arr2.length){
