@@ -19,7 +19,7 @@ var longestPalindrome = function(s) {
         if(obj[i]%2==0){
             ans+=obj[i];
         }else{
-            if(!t)t=!t;
+            !t?t=!t:t;
             ans+=obj[i]-1;
         }
     }
