@@ -18,6 +18,7 @@ var minWindow = function(s, t) {
             if(k==-1&&min>i-j){
                 min=i-j;
                 ans=s.slice(j,i+1);
+                break;
             }
         }
     }
