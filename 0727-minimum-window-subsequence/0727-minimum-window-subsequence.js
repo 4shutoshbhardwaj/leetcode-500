@@ -12,7 +12,6 @@ var minWindow = function(s, t) {
         }
         let k=t.length-1;
         for(let j=i;j>=0;j--){
-            // console.log(i,j,k,s[j]);
             if(s[j]==t[k]){
                 k--;
             }
@@ -22,6 +21,5 @@ var minWindow = function(s, t) {
             }
         }
     }
-    // console.log(ans);
     return ans;
 };
