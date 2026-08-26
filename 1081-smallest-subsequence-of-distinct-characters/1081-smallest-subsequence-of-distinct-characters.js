@@ -16,7 +16,7 @@ var smallestSubsequence = function(s) {
     }
     let stackObj={};
     for(let i=0;i<s.length;i++){
-        console.log(obj,stackObj,arr,s[i])
+        // console.log(obj,stackObj,arr,s[i])
         if(arr[arr.length-1]>s[i]){
             while(arr.length>0&&arr[arr.length-1]>s[i]&&obj[arr[arr.length-1]]>0&&stackObj[s[i]]==undefined){
                 let x=arr.pop();
@@ -39,6 +39,4 @@ var smallestSubsequence = function(s) {
         }
     }
     return arr.join("");
-    // console.log(arr);
-    // console.log("a"<"b");
 };
