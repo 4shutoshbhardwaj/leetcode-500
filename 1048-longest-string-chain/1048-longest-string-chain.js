@@ -17,6 +17,6 @@ var longestStrChain = function(words) {
         }
         maxCount=Math.max(maxCount,obj[word]);
     }
-    console.log(obj);
+    // console.log(obj);
     return maxCount;
 };
