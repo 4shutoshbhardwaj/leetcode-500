@@ -29,6 +29,6 @@ var compress = function(chars) {
     for(let i=0;i<s.length;i++){
         chars.push(s[i]);
     }
-    console.log(chars);
-    return chars.length;
+    // console.log(chars);
+    // return chars.length;
 };
