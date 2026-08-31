@@ -13,7 +13,7 @@ var canChange = function(start, target) {
             ar2.push([target[i],i]);
         }
     }
-    console.log(ar1,ar1.length,"\n",ar2,ar2.length);
+    // console.log(ar1,ar1.length,"\n",ar2,ar2.length);
     if(ar1.length!=ar2.length)return false;
     if(ar1.length==ar2.length&&ar1.length==0)return true;
     let t=false;
