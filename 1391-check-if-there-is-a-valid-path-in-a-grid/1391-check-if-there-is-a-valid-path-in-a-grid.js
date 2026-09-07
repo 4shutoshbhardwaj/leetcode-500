@@ -14,29 +14,23 @@ var hasValidPath = function(grid) {
     let m=grid.length;
     let n=grid[0].length;
     let visited=Array.from({length:m},()=>Array(n).fill(false));
-    function dfs(i,j,pi,pj){
-        if(i<0||i>=m||j<0||j>=n)return false;
-        if(visited[i][j])return false;
-        if(pi!=-1){
-            let di=pi-i;
-            let dj=pj-j;
-            let connected=false;
-            for(let d of obj[grid[i][j]]){
-                if(d[0]==di&&d[1]==dj){
-                    connected=true;
-                    break;
-                }
-            }
-            if(!connected)return false;
-        }
+    function dfs(i,j){
         if(i==m-1&&j==n-1)return true;
         visited[i][j]=true;
-        for(let d of obj[grid[i][j]]){
-            let ni=i+d[0];
-            let nj=j+d[1];
-            if(dfs(ni,nj,i,j))return true;
+        for(let q=0;q<obj[grid[i][j]].length;q++){
+            let dir=obj[grid[i][j]][q];
+            console.log(dir);
+            let ni=i+dir[0];
+            let nj=j+dir[1];
+            if(ni<0||ni>=m||nj<0||nj>=n||visited[ni][nj])continue;
+            for(let w=0;w<obj[grid[ni][nj]].length;w++){
+                let backdir=obj[grid[ni][nj]][w];
+                if(ni+backdir[0]==i&&nj+backdir[1]==j){
+                    if(dfs(ni,nj))return true;
+                }
+            }
         }
         return false;
     }
-    return dfs(0,0,-1,-1);
+    return dfs(0,0);
 };
