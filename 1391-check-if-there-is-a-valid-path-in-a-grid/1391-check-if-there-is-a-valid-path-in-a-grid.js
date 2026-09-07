@@ -19,7 +19,6 @@ var hasValidPath = function(grid) {
         visited[i][j]=true;
         for(let q=0;q<obj[grid[i][j]].length;q++){
             let dir=obj[grid[i][j]][q];
-            console.log(dir);
             let ni=i+dir[0];
             let nj=j+dir[1];
             if(ni<0||ni>=m||nj<0||nj>=n||visited[ni][nj])continue;
