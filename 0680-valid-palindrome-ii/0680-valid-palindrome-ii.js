@@ -29,7 +29,6 @@ var validPalindrome = function(s) {
     if(a>=b)return true;
     a=i;
     b=j-1;
-    console.log(a,b);
     while(a<b){
         if(s[a]==s[b]){
             a++;
