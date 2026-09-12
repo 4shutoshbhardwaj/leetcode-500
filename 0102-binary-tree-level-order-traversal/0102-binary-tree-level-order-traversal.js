@@ -12,17 +12,21 @@
  */
 var levelOrder = function(root) {
     let result=[];
-    function levelorderTraversal(node,i){
-        if(!node)return;
-        if(!result[i]){
-            result.push([]);
-            result[i].push(node.val);
-        }else{
-            result[i].push(node.val);
+    if(!root)return result;
+    let q=[root];
+    while(q.length>0){
+        let arr=[];
+        result.push([]);
+        for(let i=0;i<q.length;i++){
+            result[result.length-1].push(q[i].val);
+            if(q[i].left){
+                arr.push(q[i].left);
+            }
+            if(q[i].right){
+                arr.push(q[i].right);
+            }
         }
-        levelorderTraversal(node.left,i+1);
-        levelorderTraversal(node.right,i+1);
+        q=arr;
     }
-    levelorderTraversal(root,0);
     return result;
 };
