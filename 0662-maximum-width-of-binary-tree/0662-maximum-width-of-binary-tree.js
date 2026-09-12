@@ -14,22 +14,22 @@ var widthOfBinaryTree = function(root) {
     if(!root)return 0;
     let q=[[root,0]];
     let ans=0;
-    let k=0;
-    while(k<q.length){
-        let n=q.length-k;
-        let first=q[k][1];
+    while(q.length>0){
+        let arr=[];
+        let first=q[0][1];
         let last=q[q.length-1][1];
         ans=Math.max(ans,last-first+1);
-        for(let i=0;i<n;i++){
-            let [node,pos]=q[k++];
+        for(let i=0;i<q.length;i++){
+            let [node,pos]=q[i];
             pos=pos-first;
             if(node.left){
-                q.push([node.left,pos*2]);
+                arr.push([node.left,pos*2]);
             }
             if(node.right){
-                q.push([node.right,pos*2+1]);
+                arr.push([node.right,pos*2+1]);
             }
         }
+        q=arr;
     }
     return ans;
 };
