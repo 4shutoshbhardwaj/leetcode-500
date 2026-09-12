@@ -11,19 +11,15 @@
  * @return {number[]}
  */
 var rightSideView = function(root) {
-    if(!root)return [];
-    let q=[root];
-    let result=[];
-    while(q.length){
-        let n=q.length;
-        for(let i=0;i<n;i++){
-            let node=q.shift();
-            if(i==n-1){
-                result.push(node.val);
-            }
-            if(node.left)q.push(node.left);
-            if(node.right)q.push(node.right);
+    let arr=[];
+    function RSV(node,i){
+        if(!node)return;
+        if(arr[i]==undefined){
+            arr.push(node.val);
         }
+        RSV(node.right,i+1);
+        RSV(node.left,i+1);
     }
-    return result;
+    RSV(root,0);
+    return arr;
 };
