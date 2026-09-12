@@ -21,6 +21,5 @@ var lowestCommonAncestor = function(root, p, q) {
         if(right==null)return left;
         return node;
     }
-    console.log(func(root));
     return func(root);
 };
