@@ -19,19 +19,16 @@ var lowestCommonAncestor = function(root, p, q) {
         if(node.val==q.val||node.val==p.val){
             result.push([...arr]);
         }
-        // console.log(arr,node.val,p,q);
         func(node.left,i-1,j+1,arr);
         func(node.right,i+1,j+1,arr);
         arr.pop();
     }
     func(root,0,0,[]);
     let [ar1,ar2]=result;
-    console.log(ar1,ar2);
     let t=false;
     for(let i=ar1.length-1;i>=0;i--){
         for(let j=ar2.length-1;j>=0;j--){
             if(ar1[i][0]==ar2[j][0]&&ar1[i][1]==ar2[j][1]&&ar1[i][2]==ar2[j][2]){
-                console.log(ar1[i],ar2[j]);
                 result=[ar1[i][0],ar1[i][1]];
                 t=true;
             }
