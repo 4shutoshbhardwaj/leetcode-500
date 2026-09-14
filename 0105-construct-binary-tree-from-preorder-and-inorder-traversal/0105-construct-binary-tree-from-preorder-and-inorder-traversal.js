@@ -15,7 +15,7 @@ var buildTree = function(preorder, inorder) {
     let primaryNode=new TreeNode(preorder[0]);
     function func(preorder,inorder,node){
         // console.log(preorder,inorder,node);
-        if((preorder.length==1&&inorder.length==1)||(preorder.length==0&&inorder.length==0))return;
+        if((preorder.length==0))return;
         let midI;
         for(let i=0;i<inorder.length;i++){
             if(node.val==inorder[i]){
@@ -30,12 +30,12 @@ var buildTree = function(preorder, inorder) {
         // console.log(inorderLeft,inorderRight,preorderLeft,preorderRight);
         if(preorderLeft.length>=1){
             node.left=new TreeNode(preorderLeft[0]);
+            func(preorderLeft,inorderLeft,node.left);
         }
         if(preorderRight.length>=1){
             node.right=new TreeNode(preorderRight[0]);
+            func(preorderRight,inorderRight,node.right);
         }
-        func(preorderLeft,inorderLeft,node.left);
-        func(preorderRight,inorderRight,node.right);
     }
     func(preorder,inorder,primaryNode);
     // console.log(primaryNode);
