@@ -14,7 +14,7 @@
 var buildTree = function(preorder, inorder) {
     let primaryNode=new TreeNode(preorder[0]);
     function func(preorder,inorder,node){
-        console.log(preorder,inorder,node);
+        // console.log(preorder,inorder,node);
         if((preorder.length==1&&inorder.length==1)||(preorder.length==0&&inorder.length==0))return;
         let midI;
         for(let i=0;i<inorder.length;i++){
