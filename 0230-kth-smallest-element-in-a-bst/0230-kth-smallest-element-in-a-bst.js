@@ -20,6 +20,7 @@ var kthSmallest = function(root, k) {
         count++;
         if(count==k){
             ans=node.val;
+            return;
         }
         func(node.right);
     }
