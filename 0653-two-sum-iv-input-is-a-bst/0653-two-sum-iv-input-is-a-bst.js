@@ -22,9 +22,9 @@ var findTarget = function(root, k) {
             return;
         }else{
             obj[node.val]=1;
+            func(node.left);
+            func(node.right);
         }
-        func(node.left);
-        func(node.right);
     }
     func(root);
     return t;
