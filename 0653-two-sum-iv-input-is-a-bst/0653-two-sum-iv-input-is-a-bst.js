@@ -12,20 +12,47 @@
  * @return {boolean}
  */
 var findTarget = function(root, k) {
-    let obj={};
-    let t=false;
-    function func(node){
-        if(!node)return;
-        let key=k-node.val;
-        if(obj[key]){
-            t=true;
-            return;
-        }else if(!t){
-            obj[node.val]=1;
-            func(node.left);
-            func(node.right);
+    let arrl=[];
+    let temp=root;
+    while(temp){
+        arrl.push(temp);
+        temp=temp.left;
+    }
+    let arrr=[];
+    temp=root;
+    while(temp){
+        arrr.push(temp);
+        temp=temp.right;
+    }
+    function funcl(){
+        let ans=arrl.pop();
+        let temp=ans.right;
+        while(temp){
+            arrl.push(temp);
+            temp=temp.left;
+        }
+        return ans;
+    }
+    function funcr(){
+        let ans=arrr.pop();
+        temp=ans.left;
+        while(temp){
+            arrr.push(temp);
+            temp=temp.right;
+        }
+        return ans;
+    }
+    let l=funcl().val;
+    let r=funcr().val;
+    while(l!=r){
+        if(l+r==k){
+            return true;
+        }
+        if(l+r>k){
+            r=funcr().val;
+        }else{
+            l=funcl().val;
         }
     }
-    func(root);
-    return t;
+    return false;
 };
