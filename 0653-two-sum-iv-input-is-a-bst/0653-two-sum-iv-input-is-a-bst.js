@@ -19,6 +19,7 @@ var findTarget = function(root, k) {
         let key=k-node.val;
         if(obj[key]){
             t=true;
+            return;
         }else{
             obj[node.val]=1;
         }
