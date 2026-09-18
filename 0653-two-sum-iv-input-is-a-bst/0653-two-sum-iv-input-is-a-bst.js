@@ -20,7 +20,7 @@ var findTarget = function(root, k) {
         if(obj[key]){
             t=true;
             return;
-        }else{
+        }else if(!t){
             obj[node.val]=1;
             func(node.left);
             func(node.right);
