@@ -13,17 +13,15 @@
 var largestBSTSubtree = function(root) {
     let largestBST=0;
     function func(node){
-        if(!node){
-            return{
-                min:Infinity,
-                max:-Infinity,
-                size:0,
-                isBST:true
-            }
+        if(!node)return {
+            min:Infinity,
+            max:-Infinity,
+            size:0,
+            isBST:true
         }
         let leftBST=func(node.left);
         let rightBST=func(node.right);
-        if(leftBST.isBST&&rightBST.isBST&&leftBST.max<node.val&&node.val<rightBST.min){
+        if(leftBST.isBST&&rightBST.isBST&&leftBST.max<node.val&&rightBST.min>node.val){
             let currentSize=1+leftBST.size+rightBST.size;
             largestBST=Math.max(currentSize,largestBST);
             return {
