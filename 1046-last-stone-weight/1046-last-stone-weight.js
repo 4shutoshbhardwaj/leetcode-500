@@ -14,6 +14,6 @@ var lastStoneWeight = function(stones) {
         }
         arr.sort((a,b)=>a-b);
     }
-    console.log(arr);
+    // console.log(arr);
     return arr[0];
 };
