@@ -21,7 +21,7 @@ var lastStoneWeight = function(stones) {
     while(stones.length>0){
         pushVal(stones.pop());
     }
-    console.log(arr);
+    // console.log(arr);
     while(arr.length>1){
         let last=arr.pop();
         let secondLast=arr.pop();
