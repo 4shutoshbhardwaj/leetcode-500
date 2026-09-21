@@ -11,6 +11,7 @@ var floodFill = function(image, sr, sc, color) {
     let i=0;
     let temp=image[sr][sc];
     image[sr][sc]=color;
+    visited[sr][sc]=true;
     while(i<q.length){
         let row=q[i][0];
         let col=q[i][1];
