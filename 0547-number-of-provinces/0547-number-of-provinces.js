@@ -12,15 +12,22 @@ var findCircleNum = function(isConnected) {
             }
         }
     }
-    // console.log(arr);
     let visited=Array(arr.length).fill(false);
     function func(node){
+        let q=[node];
         visited[node]=true;
-        for(let i=0;i<arr[node].length;i++){
-            if(!visited[arr[node][i]]){
-                visited[arr[node][i]]=true;
-                func(arr[node][i]);
+        let i=0;
+        while(i<q.length){
+            let curr=q[i];
+            console.log(arr,curr);
+            for(let j=0;j<arr[curr].length;j++){
+                let nextNode=arr[curr][j];
+                if(!visited[nextNode]){
+                    visited[nextNode]=true;
+                    q.push(nextNode);
+                }
             }
+            i++;
         }
     }
     let count=0;
