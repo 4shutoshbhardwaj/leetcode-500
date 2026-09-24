@@ -3,12 +3,6 @@
  * @return {boolean}
  */
 var isBipartite = function(graph) {
-    // let adj=Array(graph.length).fill(null).map(()=>[]);
-    //  for(let i=0;i<graph.length;i++){
-    //     for(let j=0;j<graph[i].length;j++){
-    //         adj[i].push(graph[i][j]);
-    //     }
-    // }
     let visited=Array(graph.length).fill(-1);
     for(let i=0;i<graph.length;i++){
         if(visited[i]!=-1)continue;
