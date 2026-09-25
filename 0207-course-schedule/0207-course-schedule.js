@@ -8,7 +8,7 @@ var canFinish = function(numCourses, prerequisites) {
     for(let i=0;i<prerequisites.length;i++){
         adj[prerequisites[i][0]].push(prerequisites[i][1]);
     }
-    console.log(adj);
+    // console.log(adj);
     let visited=Array(numCourses).fill(false);
     let pathVisited=Array(numCourses).fill(false);
     function dfs(node){
