@@ -22,11 +22,8 @@ var alienOrder = function(words) {
     }
     let obj={};
     for(let i=0;i<words.length;i++){
-
         for(let j=0;j<words[i].length;j++){
-
             let code=words[i][j].charCodeAt(0);
-
             if(obj[code]==undefined){
                 obj[code]=1;
             }
