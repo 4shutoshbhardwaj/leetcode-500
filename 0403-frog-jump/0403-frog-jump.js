@@ -24,7 +24,7 @@ var canCross = function(stones) {
             c=func(obj[stones[i]+jump+1],jump+1);
         }
         arr[i][jump]=a||b||c;
-        return a||b||c;
+        return arr[i][jump];
     }
     return func(0,0);
 };
