@@ -30,7 +30,7 @@ var maxAreaOfIsland = function(grid) {
                 q.push([row,col-1]);
                 count++;
             }
-            // right row++;
+            // right col++;
             if(col<grid[0].length-1&&grid[row][col+1]==1){
                 grid[row][col+1]=0;
                 q.push([row,col+1]);
