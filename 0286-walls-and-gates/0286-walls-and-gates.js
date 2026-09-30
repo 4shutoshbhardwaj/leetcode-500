@@ -3,15 +3,8 @@
  * @return {void} Do not return anything, modify rooms in-place instead.
  */
 var wallsAndGates = function(rooms) {
-    function bfs(){
-        let q=[];
-        for(let i=0;i<rooms.length;i++){
-            for(let j=0;j<rooms[0].length;j++){
-                if(rooms[i][j]==0){
-                    q.push([i,j]);
-                }
-            }
-        }
+    function bfs(i,j){
+        let q=[[i,j]];
         let z=0;
         let count=1;
         let curLen=q.length;
@@ -41,5 +34,11 @@ var wallsAndGates = function(rooms) {
             }
         }
     }
-    bfs()
+    for(let i=0;i<rooms.length;i++){
+        for(let j=0;j<rooms[0].length;j++){
+            if(rooms[i][j]==0){
+                bfs(i,j);
+            }
+        }
+    }
 };
