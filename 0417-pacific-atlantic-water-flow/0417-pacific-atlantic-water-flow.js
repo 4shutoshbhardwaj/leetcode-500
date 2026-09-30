@@ -3,87 +3,86 @@
  * @return {number[][]}
  */
 var pacificAtlantic = function(heights) {
-    let cache=Array(heights.length).fill(null).map(()=>Array(heights[0].length).fill(null).map(()=>[-1,-1]));
-    function bfs(i,j){
-        let visited=Array(heights.length).fill(null).map(()=>Array(heights[0].length).fill(false));
-        visited[i][j]=true;
+    let visited=Array(heights.length).fill(null).map(()=>Array(heights[0].length).fill(null).map(()=>[-1,-1]));
+    function bfs1(i,j){
         let q=[[i,j]];
+        visited[i][j][0]=1;
         let z=0;
-        let pacific=false;
-        let atlantic=false;
         while(z<q.length){
             let row=q[z][0];
             let col=q[z][1];
-            if(cache[row][col][0]==1&&cache[row][col][1]==1){
-                pacific=true;
-                atlantic=true;
-            }
-            if(cache[row][col][0]==0&&cache[row][col][1]==1){
-                atlantic=true;
-            }
-            if(cache[row][col][0]==1&&cache[row][col][1]==0){
-                pacific=true;
-            }
-            if(row==0||col==0){
-                pacific=true;
-            }
-            if(row==heights.length-1||col==heights[0].length-1){
-                atlantic=true;
-            }
-            if(pacific&&atlantic){
-                cache[i][j]=[1,1];
-                return;
-            }
-            // up row--;
-            if(row>0&&heights[row-1][col]<=heights[row][col]&&visited[row-1][col]==false){
-                visited[row-1][col]=true;
+            if(row>0&&heights[row-1][col]>=heights[row][col]&&visited[row-1][col][0]==-1){
+                visited[row-1][col][0]=1;
                 q.push([row-1,col]);
             }
-            // down row++;
-            if(row<heights.length-1&&heights[row+1][col]<=heights[row][col]&&visited[row+1][col]==false){
-                visited[row+1][col]=true;
+            if(row<heights.length-1&&heights[row+1][col]>=heights[row][col]&&visited[row+1][col][0]==-1){
+                visited[row+1][col][0]=1;
                 q.push([row+1,col]);
             }
-            // left col--;
-            if(col>0&&heights[row][col-1]<=heights[row][col]&&visited[row][col-1]==false){
-                visited[row][col-1]=true;
+            if(col>0&&heights[row][col-1]>=heights[row][col]&&visited[row][col-1][0]==-1){
+                visited[row][col-1][0]=1;
                 q.push([row,col-1]);
             }
-            // right col++;
-            if(col<heights[0].length-1&&heights[row][col+1]<=heights[row][col]&&visited[row][col+1]==false){
-                visited[row][col+1]=true;
+            if(col<heights[0].length-1&&heights[row][col+1]>=heights[row][col]&&visited[row][col+1][0]==-1){
+                visited[row][col+1][0]=1;
                 q.push([row,col+1]);
             }
             z++;
         }
-        if(pacific&&atlantic){
-            cache[i][j]=[1,1];
-            return;
-        }
-        if(atlantic){
-            cache[i][j]=[0,1];
-            return;
-        }
-        if(pacific){
-            cache[i][j]=[1,0];
-            return;
+    }
+    function bfs2(i,j){
+        let q=[[i,j]];
+        visited[i][j][1]=1;
+        let z=0;
+        while(z<q.length){
+            let row=q[z][0];
+            let col=q[z][1];
+            if(row>0&&heights[row-1][col]>=heights[row][col]&&visited[row-1][col][1]==-1){
+                visited[row-1][col][1]=1;
+                q.push([row-1,col]);
+            }
+            if(row<heights.length-1&&heights[row+1][col]>=heights[row][col]&&visited[row+1][col][1]==-1){
+                visited[row+1][col][1]=1;
+                q.push([row+1,col]);
+            }
+            if(col>0&&heights[row][col-1]>=heights[row][col]&&visited[row][col-1][1]==-1){
+                visited[row][col-1][1]=1;
+                q.push([row,col-1]);
+            }
+            if(col<heights[0].length-1&&heights[row][col+1]>=heights[row][col]&&visited[row][col+1][1]==-1){
+                visited[row][col+1][1]=1;
+                q.push([row,col+1]);
+            }
+            z++;
         }
     }
     for(let i=0;i<heights.length;i++){
-        for(let j=0;j<heights[0].length;j++){
-            if(cache[i][j][0]==-1&&cache[i][j][1]==-1){
-                bfs(i,j);
-            }
+        if(visited[i][0][0]==-1){
+            bfs1(i,0);
+        }
+    }
+    for(let i=0;i<heights[0].length;i++){
+        if(visited[0][i][0]==-1){
+            bfs1(0,i);
+        }
+    }
+    for(let i=0;i<heights.length;i++){
+        if(visited[i][heights[0].length-1][1]==-1){
+            bfs2(i,heights[0].length-1);
+        }
+    }
+    for(let i=0;i<heights[0].length;i++){
+        if(visited[heights.length-1][i][1]==-1){
+            bfs2(heights.length-1,i);
         }
     }
     let res=[];
     for(let i=0;i<heights.length;i++){
         for(let j=0;j<heights[0].length;j++){
-            if(cache[i][j][0]==1&&cache[i][j][1]==1){
+            if(visited[i][j][0]==1&&visited[i][j][1]==1){
                 res.push([i,j]);
             }
         }
     }
-    // console.log(cache);
     return res;
 };
