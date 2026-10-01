@@ -3,86 +3,79 @@
  * @return {string}
  */
 var alienOrder = function(words) {
-    let adj=[];
+    let adj={};
+    let count=0;
+    for(let i=0;i<words.length;i++){
+        for(let j=0;j<words[i].length;j++){
+            if(adj[words[i][j]]==undefined){
+                adj[words[i][j]]=[];
+                count++;
+            }
+        }
+    }
     for(let i=0;i<words.length-1;i++){
-        let w1=words[i];
-        let w2=words[i+1];
-        let n=w1.length>w2.length?w2.length:w1.length;
-        let found=false;
+        let n=Math.min(words[i].length,words[i+1].length);
+        let flag=false;
         for(let j=0;j<n;j++){
-            if(w1[j]!=w2[j]){
-                adj.push([w1[j],w2[j]]);
-                found=true;
+            if(words[i][j]!=words[i+1][j]){
+                adj[words[i][j]].push(words[i+1][j]);
+                flag=!flag;
                 break;
             }
         }
-        if(!found && w1.length>w2.length){
-            return "";
-        }
+        if(!flag&&words[i].length>words[i+1].length)return "";
     }
-    console.log(adj);
-    let obj={};
-    for(let i=0;i<words.length;i++){
-        for(let j=0;j<words[i].length;j++){
-            let code=words[i][j].charCodeAt(0);
-            if(obj[code]==undefined){
-                obj[code]=1;
-            }
-        }
+    let char=words[0][0];
+    let visited={},pathVisited={};
+    for(let o in adj){
+        console.log(o);
+        visited[o]=0;
+        pathVisited[o]=0;
     }
-    let count=0;
-    for(let o in obj){
-        obj[o]=count++;
-    }
-    for(let i=0;i<adj.length;i++){
-        for(let j=0;j<2;j++){
-            let code=adj[i][j].charCodeAt(0);
-            adj[i][j]=obj[code];
-        }
-    }
-    let graph=Array(count).fill(null).map(()=>[]);
-    for(let i=0;i<adj.length;i++){
-        let from=adj[i][0];
-        let to=adj[i][1];
-        if(!graph[from].includes(to)){
-            graph[from].push(to);
-        }
-    }
-    let visited=Array(count).fill(0);
-    let result=[];
-    function dfs(node){
-        if(visited[node]==1){
-            return false;
-        }
-        if(visited[node]==2){
-            return true;
-        }
+    function detectCycle(node){
         visited[node]=1;
-        for(let i=0;i<graph[node].length;i++){
-            let next=graph[node][i];
-            if(!dfs(next)){
-                return false;
+        pathVisited[node]=1;
+        for(let i=0;i<adj[node].length;i++){
+            let nextNode=adj[node][i];
+            if(visited[nextNode]==0&&pathVisited[nextNode]==0){
+                if(detectCycle(nextNode)){
+                    return true;
+                }
+            }else if(visited[nextNode]==1&&pathVisited[nextNode]==1){
+                return true;
             }
         }
-        visited[node]=2;
-        result.push(node);
-        return true;
+        pathVisited[node]=0;
+        return false;
     }
-    for(let i=0;i<count;i++){
-        if(visited[i]==0){
-            if(!dfs(i)){
-                return "";
-            }
+    for(let o in adj){
+        if(visited[o]==0){
+            let t=detectCycle(o);
+            if(t)return "";
         }
     }
-    result.reverse();
-    let answer=Array(count);
-    for(let key in obj){
-        answer[obj[key]]=String.fromCharCode(Number(key));
+    let ans=[];
+    function bfs(node){
+        visited[node]=1;
+        for(let i=0;i<adj[node].length;i++){
+            let nextNode=adj[node][i];
+            if(visited[nextNode]==0){
+                bfs(nextNode);
+            }
+        }
+        ans.push(node);
     }
-    let finalAnswer="";
-    for(let i=0;i<result.length;i++){
-        finalAnswer+=answer[result[i]];
+    for(let o in adj){
+        visited[o]=0;
     }
-    return finalAnswer;
+    for(let o in adj){
+        if(visited[o]==0){
+            bfs(o);
+        }
+    }
+    let s="";
+    for(let i=ans.length-1;i>=0;i--){
+        s+=ans[i];
+    }
+    return s;
 };
