@@ -3,33 +3,29 @@
  * @return {number[]}
  */
 var eventualSafeNodes = function(graph) {
-    let arr=Array(graph.length).fill(null).map(()=>[]);
-    let outdegree=Array(graph.length).fill(0);
-    for(let i=0;i<graph.length;i++){
-        outdegree[i]=graph[i].length;
-        for(let j=0;j<graph[i].length;j++){
-            arr[graph[i][j]].push(i);
-        }
-    }
-    let q=[];
-    for(let i=0;i<outdegree.length;i++){
-        if(outdegree[i]==0){
-            q.push(i);
-        }
-    }
-    let z=0;
+    let visited=Array(graph.length).fill(false);
+    let pathVisited=Array(graph.length).fill(false);
     let res=[];
-    while(z<q.length){
-        let node=q[z];
-        res.push(node);
-        for(let i=0;i<arr[node].length;i++){
-            let nextNode=arr[node][i];
-            outdegree[nextNode]--;
-            if(outdegree[nextNode]==0){
-                q.push(nextNode);
+    function dfs(node){
+        visited[node]=true;
+        pathVisited[node]=true;
+        for(let i=0;i<graph[node].length;i++){
+            let nextNode=graph[node][i];
+            if(!visited[nextNode]&&!pathVisited[nextNode]){
+                if(dfs(nextNode)){
+                    return true;
+                }
+            }else if(visited[nextNode]&&pathVisited[nextNode]){
+                return true;
             }
         }
-        z++;
+        pathVisited[node]=false;
+        res.push(node);
+    }
+    for(let i=0;i<graph.length;i++){
+        if(!visited[i]){
+            dfs(i);
+        }
     }
     res.sort((a,b)=>a-b);
     return res;
