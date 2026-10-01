@@ -4,12 +4,10 @@
  */
 var alienOrder = function(words) {
     let adj={};
-    let count=0;
     for(let i=0;i<words.length;i++){
         for(let j=0;j<words[i].length;j++){
             if(adj[words[i][j]]==undefined){
                 adj[words[i][j]]=[];
-                count++;
             }
         }
     }
@@ -25,7 +23,6 @@ var alienOrder = function(words) {
         }
         if(!flag&&words[i].length>words[i+1].length)return "";
     }
-    let char=words[0][0];
     let visited={},pathVisited={};
     for(let o in adj){
         console.log(o);
@@ -55,12 +52,12 @@ var alienOrder = function(words) {
         }
     }
     let ans=[];
-    function bfs(node){
+    function dfs(node){
         visited[node]=1;
         for(let i=0;i<adj[node].length;i++){
             let nextNode=adj[node][i];
             if(visited[nextNode]==0){
-                bfs(nextNode);
+                dfs(nextNode);
             }
         }
         ans.push(node);
@@ -70,7 +67,7 @@ var alienOrder = function(words) {
     }
     for(let o in adj){
         if(visited[o]==0){
-            bfs(o);
+            dfs(o);
         }
     }
     let s="";
