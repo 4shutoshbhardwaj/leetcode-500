@@ -33,6 +33,6 @@ var findRedundantConnection = function(edges) {
     //         let t=(dfs(i,-1));
     //     }
     // }
-    console.log(ans);
+    // console.log(ans);
     return [ans[0][0],ans[0][1]];
 };
