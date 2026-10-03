@@ -11,7 +11,7 @@ var findRedundantConnection = function(edges) {
         adj[edges[i][0]-1].push(edges[i][1]-1);
         adj[edges[i][1]-1].push(edges[i][0]-1);
         let t=dfs(edges[i][1]-1,-1);
-        console.log(t,adj);
+        // console.log(t,adj);
         if(t)ans.push([edges[i][0],edges[i][1]])
     }
     function dfs(node,parent){
