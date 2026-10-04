@@ -27,6 +27,6 @@ var checkValidString = function(s) {
             return false;
         }
     }
-    console.log(st.length,s,s.length,st,star,j);
+    // console.log(st.length,s,s.length,st,star,j);
     return st.length==0;
 };
