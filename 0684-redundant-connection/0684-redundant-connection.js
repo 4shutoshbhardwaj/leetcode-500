@@ -4,13 +4,12 @@
  */
 var findRedundantConnection = function(edges) {
     let adj=Array(edges.length).fill(null).map(()=>[]);
-    let ans=[];
     let visited=Array(adj.length).fill(false);
     for(let i=0;i<adj.length;i++){
         visited=Array(adj.length).fill(false);
         adj[edges[i][0]-1].push(edges[i][1]-1);
         adj[edges[i][1]-1].push(edges[i][0]-1);
-        let t=dfs(edges[i][1]-1,-1);
+        let t=dfs(edges[i][0]-1,-1);
         if(t)return [edges[i][0],edges[i][1]]
     }
     function dfs(node,parent){
@@ -25,5 +24,4 @@ var findRedundantConnection = function(edges) {
         }
         return false;
     }
-    return [ans[0][0],ans[0][1]];
 };
