@@ -7,7 +7,7 @@ var longestNiceSubstring = function(s) {
     for(let i=0;i<s.length;i++){
         let k=0,str="";
         while(k<s.length){
-            if(k<=i){
+            if(k<i){
                 str+=s[k];
                 k++;
                 if(k==i){
