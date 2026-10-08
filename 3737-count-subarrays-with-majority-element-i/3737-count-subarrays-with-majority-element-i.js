@@ -4,42 +4,40 @@
  * @return {number}
  */
 var countMajoritySubarrays = function(nums, target) {
-
     let count=0;
-
-    for(let len=1;len<=nums.length;len++){
-
-        let targetCount=0;
-
-        // first window
-        for(let i=0;i<len;i++){
-            if(nums[i]==target){
-                targetCount++;
-            }
-        }
-
-        if(targetCount*2>len){
+    for(let i=0;i<nums.length;i++){
+        if(nums[i]==target){
             count++;
         }
-
-        // slide window
-        for(let i=len;i<nums.length;i++){
-
-            // remove left element
-            if(nums[i-len]==target){
-                targetCount--;
+    }
+    for(let i=1;i<nums.length;i++){
+        let tarCount=0;
+        let k=0;
+        let j=0;
+        while(k<=i){
+            if(nums[k]==target){
+                tarCount++;
             }
-
-            // add right element
-            if(nums[i]==target){
-                targetCount++;
+            k++;
+            continue;
+        }
+        if(tarCount*2>i+1){
+            count++;
+        }
+        // console.log(obj,j,k,i,"count->",count);
+        while(k<nums.length){
+            if(nums[j]==target){
+                tarCount--;
             }
-
-            if(targetCount*2>len){
+            j++;
+            if(nums[k]==target){
+                tarCount++;
+            }
+            k++;
+            if(tarCount*2>i+1){
                 count++;
             }
         }
     }
-
     return count;
 };
