@@ -6,16 +6,18 @@
 var numSubarraysWithSum = function(nums,goal) {
     function func(goal){
         if(goal<0)return 0;
-        let i=0;
+        let l=0;
+        let r=0;
         let sum=0;
         let count=0;
-        for(let j=0;j<nums.length;j++){
-            sum+=nums[j];
+        while(r<nums.length){
+            sum+=nums[r];
             while(sum>goal){
-                sum-=nums[i];
-                i++;
+                sum-=nums[l];
+                l++;
             }
-            count+=j-i+1;
+            count+=r-l+1;
+            r++;
         }
         return count;
     }
