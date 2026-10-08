@@ -3,22 +3,28 @@
  * @return {number}
  */
 var beautySum = function(s) {
-    var beauty=0;
-    for(var i=0;i<s.length;i++){
-        var freq=new Array(26).fill(0);
-        for(var j=i;j<s.length;j++){
-            var idx=s.charCodeAt(j)-97;
-            freq[idx]++;
-            var min=Infinity;
-            var max=0;
-            for(var k=0;k<freq.length;k++){
-                if(freq[k]>0){
-                    min=Math.min(min,freq[k]);
-                    max=Math.max(max,freq[k]);
-                }
+    let count=0;
+    for(let i=0;i<s.length;i++){
+        let obj={};
+        let freq=0;
+        for(let j=i;j<s.length;j++){
+            if(obj[s[j]]==undefined){
+                obj[s[j]]=1;
+                freq++;
+            }else{
+                obj[s[j]]++;
             }
-            beauty+=(max-min);
+            if(freq>1){
+                // console.log(obj,freq);
+                let max=0;
+                let min=Infinity;
+                for(let o in obj){
+                    min=Math.min(obj[o],min);
+                    max=Math.max(obj[o],max);
+                }
+                count+=(max-min);
+            }
         }
     }
-    return beauty;
+    return count;
 };
