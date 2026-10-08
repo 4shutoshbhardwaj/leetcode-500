@@ -3,21 +3,20 @@
  * @return {string}
  */
 var removeOuterParentheses = function(s) {
-    let count=0;
-    let arr=[];
-    let ss="";
+    let st=[];
+    let str="";
     for(let i=0;i<s.length;i++){
-        if(s[i]=="("){
-            count++;
-            ss+=s[i];
-        }else{
-            count--;
-            ss+=s[i];
-        }
-        if(count==0){
-            arr.push(ss.slice(1,ss.length-1));
-            ss="";
+        if(s[i]=="("&&st.length==0){
+            st.push(s[i]);
+        }else if(s[i]=="("&&st.length>0){
+            st.push(s[i]);
+            str+=s[i];
+        }else if(s[i]==")"&&st.length>1){
+            st.pop();
+            str+=s[i];
+        }else if(s[i]==")"&&st.length==1){
+            st.pop();
         }
     }
-    return arr.reduce((acc,a)=>acc+a,"");
+    return str;
 };
