@@ -4,13 +4,20 @@
  * @return {boolean}
  */
 var isSubsequence = function(s, t) {
-    let arr=s.split("");
-    let j=0;
-    for(let i=0;i<t.length;i++){
-        if(s[j]==t[i]){
-            j++;
+    let arr=Array(s.length).fill(null).map(()=>Array(t.length).fill(-1));
+    function func(i,j){
+        if(i==s.length)return true;
+        if(j==t.length)return false;
+        if(arr[i][j]!=-1)return arr[i][j];
+        let a=false;
+        let b=false;
+        if(s[i]==t[j]){
+            a=func(i+1,j+1);
+        }else{
+            b=func(i,j+1);
         }
+        arr[i][j]=a||b;
+        return a||b;
     }
-    if(j==s.length)return true;
-    else return false;
+    return func(0,0);
 };
