@@ -12,6 +12,7 @@ var validPath = function(n, edges, source, destination) {
         arr[edges[i][1]].push(edges[i][0]);
     }
     let visited=Array(n).fill(false);
+    // console.log(arr);
     function func(node){
         if(node==destination)return true;
         visited[node]=true;
