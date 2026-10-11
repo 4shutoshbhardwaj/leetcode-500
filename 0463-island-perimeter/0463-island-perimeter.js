@@ -37,7 +37,7 @@ var islandPerimeter = function(grid) {
                 count++;
             }
             z++;
-            console.log(count,row,col);
+            // console.log(count,row,col);
         }
         return count;
     }
