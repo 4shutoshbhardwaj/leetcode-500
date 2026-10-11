@@ -3,12 +3,18 @@
  * @return {number}
  */
 var findCenter = function(edges) {
-    let arr=Array(edges.length+2).fill(null).map(()=>[]);
+    let obj={};
     for(let i=0;i<edges.length;i++){
-        arr[edges[i][0]].push(edges[i][1]);
-        arr[edges[i][1]].push(edges[i][0]);
+        if(obj[edges[i][0]]==undefined){
+            obj[edges[i][0]]=1
+        }else{
+            return edges[i][0];
+        }
+        if(obj[edges[i][1]]==undefined){
+            obj[edges[i][1]]=1
+        }else{
+            return edges[i][1];
+        }
     }
-    for(let i=1;i<arr.length;i++){
-        if(arr[i].length>1)return i;
-    }
+    // console.log(obj);
 };
