@@ -7,17 +7,17 @@ var maxAlternatingSum = function(nums) {
         nums[i]=nums[i]*nums[i];
     }
     nums.sort((a,b)=>a-b);
+    let ar1=nums.slice(0,Math.floor(nums.length/2));
+    let ar2=nums.slice(Math.floor(nums.length/2));
     let i=0;
-    let j=Math.floor(nums.length/2);
     let sum=0;
-    while(i<Math.floor(nums.length/2)){
-        sum+=(nums[j]-nums[i]);
-        j++;
+    while(i<ar1.length){
+        sum+=(ar2[i]-ar1[i]);
         i++;
     }
-    while(j<nums.length){
-        sum+=nums[j];
-        j++;
+    while(i<ar2.length){
+        sum+=ar2[i];
+        i++;
     }
     return sum;
 };
