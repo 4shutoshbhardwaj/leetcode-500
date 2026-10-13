@@ -4,25 +4,32 @@
  * @return {boolean}
  */
 var search = function(nums, target) {
-    nums.sort((a,b)=>a-b);
-    let i=0;
-    let j=nums.length-1;
-    while(i<=j){
-        let mid=i+Math.floor((j-i)/2);
-        if(nums[mid]==target)return true;
-        if(nums[i]<=nums[mid]){
-            if(nums[i]<=target&&target<nums[mid]){
-                j=mid-1;
-            }else{
-                i=mid+1;
+    function func(i,j){
+        if(i>j)return false;
+        while(i<=j){
+            let m=i+Math.floor((j-i)/2);
+            if(nums[m]==target){
+                return true;
             }
-        }else{
-            if(nums[mid]<target&&target<=nums[j]){
-                i=mid+1;
+            if(nums[m]>nums[i]){
+                if(nums[i]<=target&&target<nums[m]){
+                    j=m-1;
+                }else{
+                    i=m+1;
+                }
+            }else if(nums[m]<nums[j]){
+                if(nums[m]<target&&target<=nums[j]){
+                    i=m+1;
+                }else{
+                    j=m-1;
+                }
             }else{
-                j=mid-1;
+                let a=func(m+1,j);
+                let b=func(i,m-1);
+                return a||b;
             }
         }
+        return false;
     }
-    return false;
+    return func(0,nums.length-1);
 };
