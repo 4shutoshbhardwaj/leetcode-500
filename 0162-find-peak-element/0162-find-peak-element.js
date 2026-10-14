@@ -3,20 +3,24 @@
  * @return {number}
  */
 var findPeakElement = function(nums) {
+    if(nums.length==1)return 0;
     let i=0;
     let j=nums.length-1;
-    if(nums.length==1)return 0;
-    if(nums.length==2)return nums[0]>nums[1]?0:1;
     while(i<=j){
-        let mid=i+Math.floor((j-i)/2);
-        if((nums[mid]>nums[mid+1]&&nums[mid]>nums[mid-1])||(mid==0&&nums[mid]>nums[mid+1])||(mid==nums.length-1&&nums[mid]>nums[mid-1])){
-            return mid;
+        let m=i+Math.floor((j-i)/2);
+        if(m==nums.length-1&&nums[m]>nums[m-1]){
+            return m;
         }
-        // console.log(i,mid,j);
-        if(nums[mid]<nums[mid-1]){
-            j=mid-1;
-        }else if(nums[mid]<nums[mid+1]){
-            i=mid+1;
+        if(m==0&&nums[m]>nums[m+1]){
+            return m;
+        }
+        if(nums[m]>nums[m+1]&&nums[m]>nums[m-1]){
+            return m;
+        }
+        if(nums[m]<nums[m+1]){
+            i=m+1;
+        }else if(nums[m]<nums[m-1]){
+            j=m-1;
         }
     }
 };
