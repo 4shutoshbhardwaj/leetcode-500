@@ -3,9 +3,9 @@
  * @return {number}
  */
 var countGoodNumbers = function(n) {
+    let MOD=1000000007n;
     let odd=Math.floor(n/2);
     let eve=n-odd;
-    const MOD=1000000007n;
     function func(num,pow){
         pow=BigInt(pow);
         num=BigInt(num);
@@ -16,7 +16,7 @@ var countGoodNumbers = function(n) {
             }
             num=(num*num)%MOD;
             // pow=Math.floor(pow/2);
-            pow>>=1n;
+            pow>>=1n
         }
         return res;
     }
