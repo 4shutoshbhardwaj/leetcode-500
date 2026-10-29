@@ -3,12 +3,9 @@
  * @return {number}
  */
 var findDuplicate = function(nums) {
-    let obj={};
     for(let i=0;i<nums.length;i++){
-        if(obj[nums[i]]==undefined){
-            obj[nums[i]]=1;
-        }else{
-            return nums[i];
-        }
+        let n=Math.abs(nums[i]);
+        if(nums[n-1]<0)return Math.abs(nums[i]);
+        nums[n-1]=0-nums[n-1];
     }
 };
