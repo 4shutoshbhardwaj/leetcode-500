@@ -3,22 +3,22 @@
  * @return {number}
  */
 var countGoodNumbers = function(n) {
-    let MOD=1000000007n;
-    let odd=Math.floor(n/2);
-    let eve=n-odd;
-    function func(num,pow){
-        pow=BigInt(pow);
-        num=BigInt(num);
-        let res=1n;
-        while(pow>0n){
-            if(pow%2n==1n){
-                res=(res*num)%MOD;
+    const MOD=1000000007n;
+    function power(base,exp){
+        let ans=1n;
+        while(exp>0n){
+            if(exp%2n==1n){
+                ans=(ans*base)%MOD;
             }
-            num=(num*num)%MOD;
-            // pow=Math.floor(pow/2);
-            pow>>=1n
+            base=(base*base)%MOD;
+            exp=exp/2n;
         }
-        return res;
+        return ans;
     }
-    return Number((func(4,odd)*func(5,eve))%MOD);
+    n=BigInt(n);
+    let even=(n+1n)/2n;
+    let odd=n/2n;
+    let evenWays=power(5n,even);
+    let oddWays=power(4n,odd);
+    return Number((evenWays*oddWays)%MOD);
 };
