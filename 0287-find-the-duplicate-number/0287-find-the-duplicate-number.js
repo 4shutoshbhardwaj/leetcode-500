@@ -3,9 +3,16 @@
  * @return {number}
  */
 var findDuplicate = function(nums) {
-    for(let i=0;i<nums.length;i++){
-        let n=Math.abs(nums[i]);
-        if(nums[n-1]<0)return Math.abs(nums[i]);
-        nums[n-1]=0-nums[n-1];
+    let slow=nums[0];
+    let fast=nums[0];
+    do{
+        slow=nums[slow];
+        fast=nums[nums[fast]];
+    }while(slow!=fast)
+    slow=nums[0];
+    while(slow!=fast){
+        slow=nums[slow];
+        fast=nums[fast];
     }
+    return slow;
 };
