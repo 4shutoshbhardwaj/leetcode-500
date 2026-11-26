@@ -4,25 +4,25 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-    let objs={};
-    for(var i=0;i<s.length;i++){
-        let char=s[i];
-        if(objs[char]===undefined){
-            objs[char]=1;
+    let obj={};
+    for(let i=0;i<s.length;i++){
+        if(obj[s[i]]==undefined){
+            obj[s[i]]=1;
         }else{
-            objs[char]++;
+            obj[s[i]]++;
         }
     }
-    for(var i=0;i<t.length;i++){
-        let char=t[i];
-        if(objs[char]===undefined||objs[char]<=0){
+    for(let i=0;i<t.length;i++){
+        if(obj[t[i]]<0||obj[t[i]]==undefined){
             return false;
         }else{
-            objs[char]--;
+            obj[t[i]]--;
         }
     }
-    for(ob in objs){
-        if(objs[ob]!==0)return false;
+    for(let i in obj){
+        if(!obj[i]==0){
+            return false;
+        }
     }
     return true;
 };
