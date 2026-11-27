@@ -4,17 +4,18 @@
  */
 var groupAnagrams = function(strs) {
     let obj={};
-    strs.forEach(str=>{
-        const sortedStr=str.split('').sort().join('');
+    strs.map((str)=>{
+        let sortedStr=str.split("").sort().join("");
         if(obj[sortedStr]){
             obj[sortedStr].push(str);
         }else{
             obj[sortedStr]=[str];
         }
     })
-    let result=[];
-    for(o in obj){
-        result.push(obj[o]);
+    // console.log(obj);
+    let arr=[];
+    for(let i in obj){
+        arr.push(obj[i]);
     }
-    return result;
+    return arr;
 };
